@@ -40,12 +40,19 @@ def _install_scope_mocks():
         def __init__(self, default=False):
             self.default = default
 
+    from enum import Enum
+
+    class UsageType(str, Enum):
+        PREPROCESSOR = "preprocessor"
+        POSTPROCESSOR = "postprocessor"
+
     def ui_field_config(**kwargs):
         return kwargs
 
     base_schema = MagicMock()
     base_schema.BasePipelineConfig = BasePipelineConfig
     base_schema.ModeDefaults = ModeDefaults
+    base_schema.UsageType = UsageType
     base_schema.ui_field_config = ui_field_config
 
     # --- scope.core.plugins.hookspecs ---

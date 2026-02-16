@@ -9,6 +9,7 @@ from pydantic import Field
 from scope.core.pipelines.base_schema import (
     BasePipelineConfig,
     ModeDefaults,
+    UsageType,
     ui_field_config,
 )
 
@@ -20,6 +21,7 @@ class BloomConfig(BasePipelineConfig):
     pipeline_name: ClassVar[str] = "Bloom"
     pipeline_description: ClassVar[str] = "Bloom/glow effect that adds soft light around bright areas"
     supports_prompts: ClassVar[bool] = False
+    usage: ClassVar[list] = [UsageType.PREPROCESSOR, UsageType.POSTPROCESSOR]
     modes: ClassVar[dict] = {"video": ModeDefaults(default=True)}
 
     threshold: float = Field(
